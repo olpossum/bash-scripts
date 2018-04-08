@@ -14,6 +14,7 @@ do
     #echo "Converting ${file} to ${fileout}"
     `tifig $file $fileout -q=100` &
 done
+wait
 
 `mkdir ${inpath}./JPEG`
 `mv ${inpath}*.jpg ${inpath}./JPEG`
