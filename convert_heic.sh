@@ -3,17 +3,16 @@ prefix='./'
 suffix='.heic'
 slash='/'
 
-echo "Please enter the directory with files that you want to convert: "
-read inpath
-inpath="${inpath%$slash}/"
+inpath="${1%$slash}/"
 
 for file in ${inpath}*
 do
+    ((i=i%${2})); ((i++==0)) && wait
     fileout=${file#$prefix}
     fileout=${fileout%$suffix}
     fileout="${fileout}.jpg"
-    echo "Converting ${file} to ${fileout}"
-    `tifig $file $fileout -q=100`
+    #echo "Converting ${file} to ${fileout}"
+    `tifig $file $fileout -q=100` &
 done
 
 `mkdir ${inpath}./JPEG`
